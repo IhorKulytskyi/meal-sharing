@@ -8,7 +8,7 @@ import { dirname } from 'path';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-
+import reservationsRouter from "./api/reservations.js"
 const app = express();
 import router from "./api/meals.js";
 const buildPath = path.join(__dirname, "../../dist");
@@ -27,6 +27,9 @@ app.use(express.json());
 app.use(cors());
 
 router.use("./api/meals.js", mealsRouter);
+router.use( "./reservations",reservationsRouter);
+
+//--------------------------
 
 app.get("/future-meals", async(reg, res) => {
   try{
@@ -34,15 +37,17 @@ app.get("/future-meals", async(reg, res) => {
     .select()
     .where("when", ">", new Date());
     if (futureMeals.length === 0){
-     res.status(404).send("No future meals found");
+     res.status(404).send("No found");
      return
     }
     res.status(200).json(futureMeals);
   }catch(error){
     console.error(error);
-    res.status(500).send("Something went wrong");
+    res.status(500).send("Error");
   }
 });
+
+//--------------------------
 
 app.get("/past-meals", async(reg,res)=>{
   try{
@@ -50,15 +55,17 @@ app.get("/past-meals", async(reg,res)=>{
     .where("when", "<", new Date())
     .select();
     if(pastMeals.length === 0){
-      res.status(404).send("No past meals found");
+      res.status(404).send("No found");
       return
     }
     res.status(200).json(pastMeals);
   }catch(error){
     console.error(error);
-    res.status(500).send("Something went wrong");
+    res.status(500).send("Error");
   }
 });
+
+//--------------------------
 
 app.get("/all-meals", async(reg, res)=>{
   try{
@@ -66,15 +73,17 @@ app.get("/all-meals", async(reg, res)=>{
     .select()
     .orderBy("id");
     if(allMeals.length === 0){
-      res.status(404).send("No meals found");
+      res.status(404).send("No found");
       return
     }
     res.status(200).json(allMeals);
   }catch(error){
     console.error(error);
-    res.status(500).send("Something went wrong");
+    res.status(500).send("Error");
   }
 });
+
+//--------------------------
 
 app.get("/first-meal", async (req, res) => {
   try {
@@ -84,29 +93,30 @@ app.get("/first-meal", async (req, res) => {
       .first();
     if (firstMeal) {
       res.status(200).json(firstMeal);
-    } else {res.status(404).send("No meal found");
+    } else {res.status(404).send("No found");
   }
 } catch (error) {
   console.error(error);
-  res.status(500).send("Something went wrong");
+  res.status(500).send("Error");
 }
 });
 
+//--------------------------
 
 app.get("/last-meal", async (req, res) => {
 try {
   const lastMeal = await knex("meal")
     .select()
-    .where("id", '=', knex("Meal").max('id'));
+    .where("id", '=', knex("meal").max('id'));
 
   if (lastMeal.length > 0) {
     res.status(200).json(lastMeal);
   } else {
-    res.status(404).send("No meal found");
+    res.status(404).send("No found");
   }
 } catch (error) {
   console.error(error);
-  res.status(500).send("Something went wrong");
+  res.status(500).send("Error");
 }
 });
 
@@ -114,7 +124,7 @@ if (process.env.API_PATH) {
   app.use(process.env.API_PATH, router);
 } else {
   throw "API_PATH is not set. Remember to set it in your .env file"
-}
+};
 
 // for the frontend. Will first be covered in the react class
 app.use("*", (req, res) => {
