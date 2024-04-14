@@ -4,16 +4,17 @@ import mealsRouter from "./api/meals.js";
 import cors from "cors";
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+import reservationsRouter from "./api/reservations.js";
+import reviewsRouter from "./api/reviews.js";
+import router from "./api/meals.js";
+import knex from "./database.js";
 
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-import reservationsRouter from "./api/reservations.js"
 const app = express();
-import router from "./api/meals.js";
 const buildPath = path.join(__dirname, "../../dist");
 const port = process.env.PORT || 3000;
-import knex from "./database.js";
 
 // For week4 no need to look into this!
 // Serve the built client html
@@ -28,6 +29,7 @@ app.use(cors());
 
 router.use("./api/meals.js", mealsRouter);
 router.use( "./reservations",reservationsRouter);
+router.use("/reviews", reviewsRouter);
 
 //--------------------------
 

@@ -11,7 +11,7 @@ router.get("/", async (req,res) => {
         res.status(500).send("Error");
     }
     });
-
+    
 router.post("/", async (req, res) => {
     try {
       const newReservation = req.body;
