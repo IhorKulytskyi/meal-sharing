@@ -17,6 +17,7 @@ const {maxPrice,
 const query = knex("meal")
       .select([
         "meal.id",
+  
         "meal.title",
         "meal.max_reservations",
         "meal.price",
