@@ -1,0 +1,60 @@
+/* Reservation.css */
+
+/* General form styling */
+.reservationinput-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ff8000;
+  border-radius: 10px;
+  background-color: #e6c81f;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling for each input field */
+.reservationinput-form input[type="text"],
+.reservationinput-form input[type="number"],
+.reservationinput-form input[type="email"] {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+/* Styling for the hidden input field */
+.reservationinput-form input[type="hidden"] {
+  display: none;
+}
+
+/* Styling for the submit button */
+.reservationinput-form button {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #28a745;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.reservationinput-form button:hover {
+  background-color: #218838;
+}
+
+/* Error message styling */
+.reservationinput-form p {
+  color: red;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* Reserved message styling */
+.reservationinput-form ~ p {
+  text-align: center;
+  font-size: 18px;
+  color: #28a745;
+}

@@ -1,0 +1,28 @@
+.navbar {
+    width: 100%;
+    background-color: #333; /* Black background */
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Style for the links container */
+.links {
+    display: flex;
+    flex-direction: row;
+
+    gap: 20px;
+    align-items: center;
+}
+
+/* Style for the links */
+.links a {
+    color: #ffeb3b; /* Yellow color */
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: color 0.3s;
+}
+
+.links a:hover {
+    color: #fdd835; /* Darker yellow on hover */
+}
