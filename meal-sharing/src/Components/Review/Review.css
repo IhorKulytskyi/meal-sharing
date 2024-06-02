@@ -1,0 +1,80 @@
+/* Review.css */
+
+.add-review-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #333;
+  border: 2px solid #ffeb3b;
+  color: #ddd;
+  border-radius: 5px;
+  height: 20px;
+  width: 80px;
+  margin: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.add-review-container:hover {
+  background-color: #c6a831;
+}
+
+.review-form {
+  background-color: #f3c744;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.review-form label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.review-form input[type="text"],
+.review-form textarea {
+  width: 100%;
+  padding: 0;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.review-form button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.review-form button:hover {
+  background-color: #0056b3;
+}
+
+.star-rating {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  margin-bottom: 15px;
+  background-color: white;
+}
+
+.star {
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.star.filled {
+  color: #ffbf00;
+}
+
+.star:hover {
+  color: #ffbf00;
+}

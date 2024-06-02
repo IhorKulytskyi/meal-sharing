@@ -6,13 +6,13 @@ import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import reservationsRouter from "./api/reservations.js";
 import reviewsRouter from "./api/reviews.js";
-import router from "./api/meals.js";
 import knex from "./database.js";
 
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const app = express();
+const router = express.Router();
 const buildPath = path.join(__dirname, "../../dist");
 const port = process.env.PORT || 3000;
 
@@ -27,8 +27,8 @@ app.use(express.json());
 
 app.use(cors());
 
-router.use("./api/meals.js", mealsRouter);
-router.use( "./reservations",reservationsRouter);
+router.use("/meals", mealsRouter);
+router.use( "/reservations",reservationsRouter);
 router.use("/reviews", reviewsRouter);
 
 //--------------------------

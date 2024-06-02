@@ -3,6 +3,7 @@ const router = express.Router();
 import knex from "../database.js";
 import app from "../app.js";
 
+
 router.get("/", async (req, res) => {
   try {
 const {maxPrice,
@@ -21,10 +22,11 @@ const query = knex("meal")
         "meal.max_reservations",
         "meal.price",
         "meal.when",
+        "meal.picture",
       ])
       .countDistinct("reservation.id as total_reservations")
       .leftJoin("reservation", "meal.id", "=", "reservation.meal_id")
-      .groupBy("meal.id", "meal.title", "meal.max_reservations", "meal.price", "meal.when");
+      .groupBy("meal.id", "meal.title", "meal.max_reservations", "meal.price", "meal.when", "meal.picture");
 
       if (maxPrice !== undefined) {
         // Convert maxPrice to a float
