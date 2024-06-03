@@ -21,12 +21,12 @@ const query = knex("meal")
         "meal.title",
         "meal.max_reservations",
         "meal.price",
-        "meal.when",
+        "meal.when_date",
         "meal.picture",
       ])
       .countDistinct("reservation.id as total_reservations")
       .leftJoin("reservation", "meal.id", "=", "reservation.meal_id")
-      .groupBy("meal.id", "meal.title", "meal.max_reservations", "meal.price", "meal.when", "meal.picture");
+      .groupBy("meal.id", "meal.title", "meal.max_reservations", "meal.price", "meal.when_date", "meal.picture");
 
       if (maxPrice !== undefined) {
         // Convert maxPrice to a float
@@ -51,11 +51,11 @@ if (title !== undefined) {
 }
 
 if (dateAfter !== undefined) {
-  query.where("meal.when", ">", dateAfter);
+  query.where("meal.when_date", ">", dateAfter);
 }
 
 if (dateBefore !== undefined) {
-  query.where("meal.when", "<", dateBefore);
+  query.where("meal.when_date", "<", dateBefore);
 }
 
 if (limit !== undefined) {

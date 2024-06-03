@@ -13,14 +13,15 @@ router.get("/", async (req,res) => {
 })
 
 router.post("/", async (req, res) => {
-    try {
-        const newReview = req.body;
-        const [reviewId] = await knex("review").insert(newReview);
-        res.status(201).json({ id: reviewId });
-    } catch (error) {
-        console.error(error);
-        res.status(500).send("Error");
-    }
+  try {
+    const newReview = req.body;
+    const review = await knex("review")
+    .insert(newReview);
+    res.status(201).json(review);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Something went wrong");
+  }
 });
 
 router.get("/:id", async(req,res)=>{
